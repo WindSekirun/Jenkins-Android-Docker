@@ -31,9 +31,6 @@ RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && \
  	rm /opt/$ANDROID_SDK_ZIP
 
 RUN	echo y | sdkmanager platform-tools \  
-    "ndk-bundle" \
-	"lldb;2.3" \
-	"cmake;3.6.3155560" \
 	"build-tools;28.0.3" \ 
 	"platforms;android-28" \
 	"build-tools;27.0.3" \ 
