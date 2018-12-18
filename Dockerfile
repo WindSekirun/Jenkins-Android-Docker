@@ -1,7 +1,7 @@
 # Fork base code at https://github.com/futurice/android-jenkins-docker
 # Modified, 2018-12-18
 
-FROM jenkins
+FROM jenkins/jenkins:2.150.1
 
 MAINTAINER WindSekirun <pyxis@uzuki.live>
 
