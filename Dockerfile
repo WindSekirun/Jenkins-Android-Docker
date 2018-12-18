@@ -61,4 +61,4 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 	
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh git gradle android-emulator:2.15 ws-cleanup:0.30 slack:2.0.1 embeddable-build-status:1.9
+RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status
