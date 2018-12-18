@@ -25,9 +25,13 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
 ```docker build -t jenkins-android-docker .```
 
 ## Use image
-```docker run -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
+ - Test environment: Vultr VC2 2core 4GB 60GB, Ubuntu 18.04.1 
 
-Latest version need to replace real version. You can find tag in [this page](https://hub.docker.com/r/windsekirun/jenkins-android-docker/tags)
+```docker run -d -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
+
+ - Latest version need to replace real version. You can find tag in [this page](https://hub.docker.com/r/windsekirun/jenkins-android-docker/tags)
+
+ - Before run image, you should provide permission to access /data/jenkins-android-docker with ```sudo chown -R 1000:1000 /data/jenkins-android-docker``` statement.
  
 ## Modification
  From Line 33 ~ 41, you can modify version info using `sdkmanager`. Feel free to change these value.
