@@ -29,7 +29,7 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
 
 ```docker run -d -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
 
- - Latest version need to replace real version. You can find tag in [this page](https://hub.docker.com/r/windsekirun/jenkins-android-docker/tags)
+ - Latest version need to replace real version. You can find tag in [Release Page](https://github.com/WindSekirun/Jenkins-Android-Docker/releases)
 
  - Before run image, you should provide permission to access /data/jenkins-android-docker with ```sudo chown -R 1000:1000 /data/jenkins-android-docker``` statement.
  
