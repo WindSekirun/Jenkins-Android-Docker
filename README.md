@@ -25,7 +25,7 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
 ```docker build -t jenkins-android-docker .```
 
 ## Use image
-```docker run --name jenkins-android-docker -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
+```docker run -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
 
 Latest version need to replace real version. You can find tag in [this page](https://hub.docker.com/r/windsekirun/jenkins-android-docker/tags)
  
