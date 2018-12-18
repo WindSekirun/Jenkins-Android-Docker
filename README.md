@@ -1,7 +1,7 @@
 # Jenkins-Android-Docker
 🐳 Docker image for Jenkins with Android
 
-Fork base code at https://github.com/futurice/android-jenkins-docker , modified in now-days environment.
+Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
 ## Pre-installed SDK Version
 
@@ -10,7 +10,7 @@ Fork base code at https://github.com/futurice/android-jenkins-docker , modified 
  * Android API 26 - build tools 26.0.3
  * extra-android-m2repository
  
- ## Pre-installed Plugin
+## Pre-installed Jenkins Plugin
  
   * git
   * gradle
@@ -19,14 +19,14 @@ Fork base code at https://github.com/futurice/android-jenkins-docker , modified 
   * slack
   * embeddable-build-status
   
- ## Build image
- docker build -t jenkins-android-docker .
+## Build image
+ ```docker build -t jenkins-android-docker .```
  
- ## Use image
- docker run --name android-jenkins -p 8080:8080 -p 50000:50000 -v /var/android_jenkins_home:/var/jenkins_home jenkins-android-docker
+## Use image
+ ```docker run --name android-jenkins -p 8080:8080 -p 50000:50000 -v /var/android_jenkins_home:/var/jenkins_home jenkins-android-docker```
  
- ## Modification
+## Modification
  From Line 33 ~ 41, you can modify version info using `sdkmanager`. Feel free to change these value.
  
- ## ~License~
+## ~License~
  ~Do we really need license?~
