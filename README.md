@@ -20,11 +20,8 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
   * embeddable-build-status
   
 ## Build image
- ```>docker build -t jenkins-android-docker:tagname .```
- 
-## Push Image
-```docker push windsekirun/jenkins-android-docker:tagname```
- 
+ ```docker build -t jenkins-android-docker .```
+
 ## Use image
  ```docker run --name android-jenkins -p 8080:8080 -p 50000:50000 -v /var/android_jenkins_home:/var/jenkins_home jenkins-android-docker```
  
