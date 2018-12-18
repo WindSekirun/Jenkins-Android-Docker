@@ -37,9 +37,7 @@ RUN	echo y | sdkmanager platform-tools \
 	"platforms;android-27" \
 	"build-tools;26.0.3" \ 
 	"platforms;android-26" \
-	"extras;android;m2repository" \
-	"extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.1.3" \
-	"extras;m2repository;com;android;support;constraint;constraint-layout;1.1.3"  && \
+	"extras;android;m2repository" && \
 chown -R jenkins $ANDROID_HOME
 
 RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y
