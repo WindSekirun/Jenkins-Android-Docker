@@ -25,7 +25,7 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
  ```docker build -t jenkins-android-docker .```
 
 ## Use image
- ```docker run --name android-jenkins -p 8080:8080 -p 50000:50000 -v /var/android_jenkins_home:/var/jenkins_home jenkins-android-docker```
+ ```docker run --name android-jenkins -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker```
  
 ## Modification
  From Line 33 ~ 41, you can modify version info using `sdkmanager`. Feel free to change these value.
