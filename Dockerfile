@@ -50,6 +50,12 @@ RUN	echo y | sdkmanager platform-tools \
 	"platforms;android-27" \
 	"build-tools;26.0.3" \ 
 	"platforms;android-26" \
+        "build-tools;25.0.3" \
+        "platforms;android-25" \
+        "build-tools;23.0.3" \
+        "platforms;android-23" \
+        "build-tools;22.0.1" \ 
+        "platforms;android-22" \
 	"extras;android;m2repository" && \
 chown -R jenkins $ANDROID_HOME
 
