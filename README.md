@@ -10,6 +10,9 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
  * Android API 28 - build tools 28.0.3
  * Android API 27 - build tools 27.0.3
  * Android API 26 - build tools 26.0.3
+ * Android API 25 - build tools 25.0.3 (1.0.2)
+ * Android API 23 - build tools 23.0.3 (1.0.2)
+ * Android API 22 - build tools 22.0.1 (1.0.2)
  * extra-android-m2repository
  
 ## Pre-installed Jenkins Plugin
