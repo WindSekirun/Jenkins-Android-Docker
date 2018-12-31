@@ -40,8 +40,6 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
     volumes:
       - "/data/jenkins-android-docker:/var/jenkins_home"
     restart: always
-    networks:
-      - uzukilive-networks
 ```
 
 ### With nginx
