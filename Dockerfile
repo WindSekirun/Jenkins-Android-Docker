@@ -32,8 +32,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 USER root
 
 RUN dpkg --add-architecture i386
-RUN apt-get update && \
-	apt-get install software-properties-common git unzip file -y
+RUN rm -rf /var/lib/apt/lists/* && apt-get update && \
+	apt-get install software-properties-common git unzip file -y --no-install-recommends
 
 ADD $GRADLE_ZIP_URL /opt/
 RUN unzip /opt/$GRADLE_ZIP -d /opt/ && \
@@ -59,12 +59,11 @@ RUN	echo y | sdkmanager platform-tools \
 	"extras;android;m2repository" && \
 chown -R jenkins $ANDROID_HOME
 
-RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y
-
+RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y --no-install-recommends
 
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 	
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status
+RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status blueocean github-coverage-reporter jacoco github-pr-coverage-status
