@@ -21,6 +21,10 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
   * ws-cleanup
   * slack
   * embeddable-build-status
+  * blueocean (since 1.0.4)
+  * github-coverage-reporter (since 1.0.4)
+  * jacoco (since 1.0.4)
+  * github-pr-coverage-status (since 1.0.4)
   
 ## Build image
 ```docker build -t jenkins-android-docker .```
