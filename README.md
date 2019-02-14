@@ -29,6 +29,8 @@ Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/
 ## Build image
 ```docker build -t jenkins-android-docker .```
 
+Instead, you can use `buildImage.sh`
+
 ## Use image
 ```docker run -d -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
 
