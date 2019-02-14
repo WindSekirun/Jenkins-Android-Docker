@@ -1,7 +1,7 @@
 # Jenkins-Android-Docker
 [![](https://images.microbadger.com/badges/image/windsekirun/jenkins-android-docker.svg)](https://microbadger.com/images/windsekirun/jenkins-android-docker "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/windsekirun/jenkins-android-docker.svg)](https://microbadger.com/images/windsekirun/jenkins-android-docker "Get your own version badge on microbadger.com") 
 
-🐳 Docker image for Jenkins with Android, [View on DockerHub](https://cloud.docker.com/u/windsekirun/repository/docker/windsekirun/jenkins-android-docker)
+🐳 Docker image for Jenkins with Android, [View on DockerHubhttps://hub.docker.com/r/windsekirun/jenkins-android-docke)
 
 Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
