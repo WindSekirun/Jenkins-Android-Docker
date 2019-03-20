@@ -3,7 +3,7 @@
 
 🐳 Docker image for Jenkins with Android, [View on DockerHub](https://hub.docker.com/r/windsekirun/jenkins-android-docker)
 
-Fork base code at [futurice/android-jenjins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
+Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
 ## Pre-installed SDK Version
  * Android API 28 - build tools 28.0.3
