@@ -1,8 +1,7 @@
-# Fork base code at https://github.com/futurice/android-jenkins-docker
-# Modified, 2018-12-18
+## Based Image
+FROM jenkins/jenkins:2.164.1
 
-FROM jenkins/jenkins:2.150.3
-
+## Define Environment
 MAINTAINER WindSekirun <pyxis@uzuki.live>
 
 ENV ANDROID_SDK_ZIP sdk-tools-linux-4333796.zip
@@ -31,39 +30,43 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 USER root
 
+## Install requirements
 RUN dpkg --add-architecture i386
-RUN rm -rf /var/lib/apt/lists/* && apt-get update && \
-	apt-get install software-properties-common git unzip file -y --no-install-recommends
+RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https -y
 
+## Install Docker-ce into Image
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey;
+RUN apt-key add /tmp/dkey
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+RUN apt-get update && apt-get install docker-ce -y --no-install-recommends
+RUN usermod -a -G docker jenkins
+
+## Install Android SDK into Image
 ADD $GRADLE_ZIP_URL /opt/
-RUN unzip /opt/$GRADLE_ZIP -d /opt/ && \
-	rm /opt/$GRADLE_ZIP
+RUN unzip /opt/$GRADLE_ZIP -d /opt/ && rm /opt/$GRADLE_ZIP
 
 ADD $ANDROID_SDK_ZIP_URL /opt/
-RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && \
- 	rm /opt/$ANDROID_SDK_ZIP
+RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && rm /opt/$ANDROID_SDK_ZIP
 
-RUN	echo y | sdkmanager platform-tools \  
-	"build-tools;28.0.3" \ 
-	"platforms;android-28" \
-	"build-tools;27.0.3" \ 
-	"platforms;android-27" \
-	"build-tools;26.0.3" \ 
-	"platforms;android-26" \
-        "build-tools;25.0.3" \
-        "platforms;android-25" \
-        "build-tools;23.0.3" \
-        "platforms;android-23" \
-        "build-tools;22.0.1" \ 
-        "platforms;android-22" \
-	"extras;android;m2repository" && \
-chown -R jenkins $ANDROID_HOME
+RUN echo y | sdkmanager platform-tools "build-tools;28.0.3"
+RUN echo y | sdkmanager platform-tools "platforms;android-28"
+RUN echo y | sdkmanager platform-tools "build-tools;27.0.3"
+RUN echo y | sdkmanager platform-tools "platforms;android-27"
+RUN echo y | sdkmanager platform-tools "build-tools;26.0.3"
+RUN echo y | sdkmanager platform-tools "platforms;android-26"
+RUN echo y | sdkmanager platform-tools "build-tools;25.0.3"
+RUN echo y | sdkmanager platform-tools "platforms;android-25"
+RUN echo y | sdkmanager platform-tools "build-tools;23.0.3"
+RUN echo y | sdkmanager platform-tools "platforms;android-23"
+RUN echo y | sdkmanager platform-tools "extras;android;m2repository"
+RUN chown -R jenkins $ANDROID_HOME
 
 RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y --no-install-recommends
 
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-	
+
+## Install Jenkins plugin	
 USER jenkins
 
-RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status blueocean github-coverage-reporter jacoco github-pr-coverage-status
+RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status blueocean github-coverage-reporter jacoco github-pr-coverage-status locale
