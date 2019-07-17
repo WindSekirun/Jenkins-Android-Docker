@@ -1,5 +1,5 @@
 ## Based Image
-FROM jenkins/jenkins:2.164.1
+FROM jenkins/jenkins:2.176.1
 
 ## Define Environment
 MAINTAINER WindSekirun <pyxis@uzuki.live>
