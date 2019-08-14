@@ -1,8 +1,8 @@
 ## Based Image
-FROM jenkins/jenkins:2.176.1
+FROM jenkins/jenkins:2.176.2
 
 ## Define Environment
-MAINTAINER WindSekirun <pyxis@uzuki.live>
+MAINTAINER WindSekirun <windsekirun@gmail.com>
 
 ENV ANDROID_SDK_ZIP sdk-tools-linux-4333796.zip
 ENV ANDROID_SDK_ZIP_URL https://dl.google.com/android/repository/$ANDROID_SDK_ZIP
