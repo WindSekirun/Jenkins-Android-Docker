@@ -1,5 +1,5 @@
 ## Based Image
-FROM jenkins/jenkins:2.176.2
+FROM jenkins/jenkins:2.190.1
 
 ## Define Environment
 MAINTAINER WindSekirun <windsekirun@gmail.com>
@@ -8,12 +8,12 @@ ENV ANDROID_SDK_ZIP sdk-tools-linux-4333796.zip
 ENV ANDROID_SDK_ZIP_URL https://dl.google.com/android/repository/$ANDROID_SDK_ZIP
 ENV ANDROID_HOME /opt/android-sdk-linux
 
-ENV GRADLE_ZIP gradle-4.10.1-bin.zip
+ENV GRADLE_ZIP gradle-5.4.1-bin.zip
 ENV GRADLE_ZIP_URL https://services.gradle.org/distributions/$GRADLE_ZIP
 
 ENV PATH $PATH:$ANDROID_HOME/tools/bin
 ENV PATH $PATH:$ANDROID_HOME/platform-tools
-ENV PATH $PATH:/opt/gradle-4.10.1/bin
+ENV PATH $PATH:/opt/gradle-5.4.1/bin
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -48,6 +48,8 @@ RUN unzip /opt/$GRADLE_ZIP -d /opt/ && rm /opt/$GRADLE_ZIP
 ADD $ANDROID_SDK_ZIP_URL /opt/
 RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && rm /opt/$ANDROID_SDK_ZIP
 
+RUN echo y | sdkmanager platform-tools "build-tools;29.0.2"
+RUN echo y | sdkmanager platform-tools "platforms;android-29"
 RUN echo y | sdkmanager platform-tools "build-tools;28.0.3"
 RUN echo y | sdkmanager platform-tools "platforms;android-28"
 RUN echo y | sdkmanager platform-tools "build-tools;27.0.3"
