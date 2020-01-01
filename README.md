@@ -6,7 +6,7 @@ Docker image for Jenkins with Android, [View on DockerHub](https://hub.docker.co
 Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
 ## Pre-installed packages
- * Jenkins Version: 2.190.1
+ * Jenkins Version: 2.204.1
  * Docker-CE 18.09.3
 
 ### Android SDK
