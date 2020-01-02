@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy docker image') {
             steps {
                 withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {
-                    sh 'docker push $registry:latest'
+                    sh 'docker push $registry:$(cat VERSION)'
                 }
             }
         }
