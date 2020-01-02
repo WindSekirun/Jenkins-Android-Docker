@@ -3,6 +3,7 @@ pipeline {
     environment {
         registry = "windsekirun/jenkins-android-docker"
         registryCredential = 'DockerHub'
+        verison = $cat VERSION
     }
     agent any
     stages {
@@ -32,11 +33,11 @@ pipeline {
                 }
             }
         }
-        stage('Clean docker image') {
+        stage('Clean docker image
             steps{
                 script {
                     try {
-                        sh "docker rmi $registry:$(cat VERSION)"
+                        sh "docker rmi $registry:$verison"
                     } catch (Exception e) {
                         echo e.getMessage()
                     }
