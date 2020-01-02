@@ -33,7 +33,7 @@ pipeline {
                 }
             }
         }
-        stage('Clean docker image
+        stage('Clean docker image') {
             steps{
                 script {
                     try {
