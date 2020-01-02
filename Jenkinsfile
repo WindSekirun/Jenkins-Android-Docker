@@ -36,9 +36,9 @@ pipeline {
             steps{
                 script {
                     try {
-                        sh "docker rmi $registry"
+                        sh "docker rmi $registry:$(cat VERSION)"
                     } catch (Exception e) {
-                        echo err.getMessage()
+                        echo e.getMessage()
                     }
                 }
             }
