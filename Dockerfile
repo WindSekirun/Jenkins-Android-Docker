@@ -1,5 +1,5 @@
 ## Based Image
-FROM jenkins/jenkins:2.222.1
+FROM jenkins/jenkins:2.231
 
 ## Define Environment
 MAINTAINER WindSekirun <windsekirun@gmail.com>
