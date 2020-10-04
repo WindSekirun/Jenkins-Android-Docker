@@ -48,7 +48,7 @@ RUN unzip /opt/$GRADLE_ZIP -d /opt/ && rm /opt/$GRADLE_ZIP
 ADD $ANDROID_SDK_ZIP_URL /opt/
 RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && rm /opt/$ANDROID_SDK_ZIP
 
-RUN echo y | sdkmanager platform-tools "build-tools;30.0.02"
+RUN echo y | sdkmanager platform-tools "build-tools;30.0.2"
 RUN echo y | sdkmanager platform-tools "platforms;android-30"
 RUN echo y | sdkmanager platform-tools "build-tools;29.0.2"
 RUN echo y | sdkmanager platform-tools "platforms;android-29"
