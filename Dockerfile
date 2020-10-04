@@ -2,7 +2,7 @@
 FROM jenkins/jenkins:2.259
 
 ## Define Environment
-MAINTAINER WindSekirun <windsekirun@gmail.com>
+LABEL maintainer="windsekirun@gmail.com"
 
 ENV ANDROID_SDK_ZIP sdk-tools-linux-4333796.zip
 ENV ANDROID_SDK_ZIP_URL https://dl.google.com/android/repository/$ANDROID_SDK_ZIP
@@ -48,6 +48,8 @@ RUN unzip /opt/$GRADLE_ZIP -d /opt/ && rm /opt/$GRADLE_ZIP
 ADD $ANDROID_SDK_ZIP_URL /opt/
 RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && rm /opt/$ANDROID_SDK_ZIP
 
+RUN echo y | sdkmanager platform-tools "build-tools;30.0.2"
+RUN echo y | sdkmanager platform-tools "platforms;android-30"
 RUN echo y | sdkmanager platform-tools "build-tools;29.0.2"
 RUN echo y | sdkmanager platform-tools "platforms;android-29"
 RUN echo y | sdkmanager platform-tools "build-tools;28.0.3"
