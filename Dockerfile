@@ -1,5 +1,5 @@
 ## Based Image
-FROM jenkins/jenkins:2.259
+FROM jenkins/jenkins:2.261
 
 ## Define Environment
 LABEL maintainer="windsekirun@gmail.com"
