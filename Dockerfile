@@ -1,18 +1,19 @@
 ## Based Image
-FROM jenkins/jenkins:2.259
+FROM jenkins/jenkins:2.266
 
 ## Define Environment
 LABEL maintainer="windsekirun@gmail.com"
 
-ENV ANDROID_SDK_ZIP sdk-tools-linux-4333796.zip
+ENV ANDROID_SDK_ZIP commandlinetools-linux-6609375_latest.zip
 ENV ANDROID_SDK_ZIP_URL https://dl.google.com/android/repository/$ANDROID_SDK_ZIP
 ENV ANDROID_HOME /opt/android-sdk-linux
+ENV ANDROID_SDK_ROOT /opt/android-sdk-linux
 
 ENV GRADLE_ZIP gradle-5.6.4-bin.zip
 ENV GRADLE_ZIP_URL https://services.gradle.org/distributions/$GRADLE_ZIP
 
-ENV PATH $PATH:$ANDROID_HOME/tools/bin
-ENV PATH $PATH:$ANDROID_HOME/platform-tools
+ENV PATH $PATH:$ANDROID_SDK_ROOT/tools/bin
+ENV PATH $PATH:$ANDROID_SDK_ROOT/platform-tools
 ENV PATH $PATH:/opt/gradle-5.6.4/bin
 
 # Build-time metadata as defined at http://label-schema.org
@@ -32,7 +33,7 @@ USER root
 
 ## Install requirements
 RUN dpkg --add-architecture i386
-RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https -y
+RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y
 
 ## Install Docker-ce into Image
 RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey;
@@ -46,26 +47,20 @@ ADD $GRADLE_ZIP_URL /opt/
 RUN unzip /opt/$GRADLE_ZIP -d /opt/ && rm /opt/$GRADLE_ZIP
 
 ADD $ANDROID_SDK_ZIP_URL /opt/
-RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_HOME && rm /opt/$ANDROID_SDK_ZIP
+RUN unzip -q /opt/$ANDROID_SDK_ZIP -d $ANDROID_SDK_ROOT && rm /opt/$ANDROID_SDK_ZIP
 
-RUN echo y | sdkmanager platform-tools "build-tools;30.0.2"
-RUN echo y | sdkmanager platform-tools "platforms;android-30"
-RUN echo y | sdkmanager platform-tools "build-tools;29.0.2"
-RUN echo y | sdkmanager platform-tools "platforms;android-29"
-RUN echo y | sdkmanager platform-tools "build-tools;28.0.3"
-RUN echo y | sdkmanager platform-tools "platforms;android-28"
-RUN echo y | sdkmanager platform-tools "build-tools;27.0.3"
-RUN echo y | sdkmanager platform-tools "platforms;android-27"
-RUN echo y | sdkmanager platform-tools "build-tools;26.0.3"
-RUN echo y | sdkmanager platform-tools "platforms;android-26"
-RUN echo y | sdkmanager platform-tools "build-tools;25.0.3"
-RUN echo y | sdkmanager platform-tools "platforms;android-25"
-RUN echo y | sdkmanager platform-tools "build-tools;23.0.3"
-RUN echo y | sdkmanager platform-tools "platforms;android-23"
-RUN echo y | sdkmanager platform-tools "extras;android;m2repository"
-RUN chown -R jenkins $ANDROID_HOME
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "build-tools;30.0.2"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;android-30"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "build-tools;29.0.2"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;android-29"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "build-tools;28.0.3"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;android-28"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "build-tools;27.0.3"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;android-27"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "build-tools;26.0.3"
+RUN echo yes | sdkmanager --sdk_root=${ANDROID_SDK_ROOT} "platform-tools" "platforms;android-26"
 
-RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y --no-install-recommends
+RUN chown -R jenkins $ANDROID_SDK_ROOT
 
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

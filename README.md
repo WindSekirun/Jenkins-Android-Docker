@@ -6,7 +6,7 @@ Docker image for Jenkins with Android, [View on DockerHub](https://hub.docker.co
 Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
 ## Pre-installed packages
- * Jenkins Version: 2.259
+ * Jenkins Version: 2.266
  * Docker-CE 
 
 ### Android SDK
@@ -15,9 +15,6 @@ Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/
  * Android API 28 - build tools 28.0.3
  * Android API 27 - build tools 27.0.3
  * Android API 26 - build tools 26.0.3
- * Android API 25 - build tools 25.0.3 (1.0.2)
- * Android API 23 - build tools 23.0.3 (1.0.2)
- * extra-android-m2repository
  
 ### Jenkins Plugin
  * git
@@ -62,7 +59,7 @@ If you want use nginx for reverse-proxy, you can add this statement in conf file
 ```proxy_pass http://jenkins:8080;```
 
 ## Modification
- From Line 33 ~ 41, you can modify version info using `sdkmanager`. Feel free to change these value.
+ From Line 52, you can modify version info using `sdkmanager`. Feel free to change these value.
  
 ## ~License~
  ~Do we really need license?~
