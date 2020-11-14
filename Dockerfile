@@ -33,7 +33,11 @@ USER root
 
 ## Install requirements
 RUN dpkg --add-architecture i386
-RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils -y
+RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 qemu qemu-kvm qemu-system qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virtinst -y
+
+## KVM install
+RUN usermod -a -G kvm jenkins
+RUN usermod -a -G libvirt jenkins
 
 ## Install Docker-ce into Image
 RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey;
@@ -67,13 +71,5 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ## Install Jenkins plugin	
 USER jenkins
-
-## check KVM is wroking
-RUN kvm-ok
-RUN addgroup kvm
-RUN usermod -a -G kvm jenkins
-RUN usermod -a -G libvirt jenkins
-RUN chgrp kvm /dev/kvm
-RUN echo 'KERNEL=="kvm", GROUP="kvm", MODE="0660"' > /etc/udev/rules.d/60-qemu-kvm.rules
 
 RUN /usr/local/bin/install-plugins.sh git gradle android-emulator ws-cleanup slack embeddable-build-status blueocean github-coverage-reporter jacoco github-pr-coverage-status locale
