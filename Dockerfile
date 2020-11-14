@@ -33,7 +33,11 @@ USER root
 
 ## Install requirements
 RUN dpkg --add-architecture i386
-RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 -y
+RUN rm -rf /var/lib/apt/list/* && apt-get update && apt-get install ca-certificates curl gnupg2 software-properties-common git unzip file apt-utils lxc apt-transport-https libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 qemu qemu-kvm qemu-system qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virtinst -y
+
+## KVM install
+RUN usermod -a -G kvm jenkins
+RUN usermod -a -G libvirt jenkins
 
 ## Install Docker-ce into Image
 RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey;
