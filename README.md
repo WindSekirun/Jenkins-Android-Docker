@@ -40,18 +40,9 @@ Instead, you can use `buildImage.sh`
  - Latest version need to replace real version. You can find tag in [Release Page](https://github.com/WindSekirun/Jenkins-Android-Docker/releases)
  - Before run image, you should provide permission to access /data/jenkins-android-docker with ```sudo chown -R 1000:1000 /data/jenkins-android-docker``` statement.
 
-### docker-compose (v 2.4)
+### docker
 ```
-  jenkins:
-    image: windsekirun/jenkins-android-docker:<latest-version>
-    container_name: jenkins
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - "/data/jenkins-android-docker:/var/jenkins_home"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    restart: always
+docker run -dit -p 8080:8080 --dns 8.8.8.8 -p 50000:50000 -v /data/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime --name jenkins stilesboy/jenkins-android-java11:v1.0
 ```
 
 ### With nginx
