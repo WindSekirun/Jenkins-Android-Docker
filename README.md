@@ -6,12 +6,12 @@ Docker image for Jenkins with Android, [View on DockerHub](https://hub.docker.co
 Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/android-jenkins-docker), Revised to the latest development environment.
 
 ## Pre-installed packages
- * Jenkins Version: 2.266
+ * Jenkins Version: latest-jdk11
  * Docker-CE 
 
 ### Android SDK
  * Android API 30 - build tools 30.0.02 (1.1.3)
- * Android API 29 - build tools 29.0.2 (1.0.8)
+ * Android API 29 - build tools 29.0.3 (1.0.8)
  * Android API 28 - build tools 28.0.3
  * Android API 27 - build tools 27.0.3
  * Android API 26 - build tools 26.0.3
@@ -34,25 +34,12 @@ Fork base code at [futurice/android-jenkins-docker](https://github.com/futurice/
 
 Instead, you can use `buildImage.sh`
 
-## Using image
-```docker run -d -p 8080:8080 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home windsekirun/jenkins-android-docker:<latest-version>```
+### docker
+```docker run -dit -p 8080:8080 --dns 8.8.8.8 -p 50000:50000 -v /data/jenkins-android-docker:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime --name jenkins stilesboy/jenkins-android-java11:v1.0```
 
- - Latest version need to replace real version. You can find tag in [Release Page](https://github.com/WindSekirun/Jenkins-Android-Docker/releases)
- - Before run image, you should provide permission to access /data/jenkins-android-docker with ```sudo chown -R 1000:1000 /data/jenkins-android-docker``` statement.
+  - Latest version need to replace real version. You can find tag in [Release Page](https://github.com/stilesTech/Jenkins-Android-Docker/releases)
+ - Before run image, you should provide permission to access /data/jenkins-android-docker with ```sudo chown -R 1000:1000 /data/jenkins-android-docker```   statement.
 
-### docker-compose (v 2.4)
-```
-  jenkins:
-    image: windsekirun/jenkins-android-docker:<latest-version>
-    container_name: jenkins
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - "/data/jenkins-android-docker:/var/jenkins_home"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    restart: always
-```
 
 ### With nginx
 If you want use nginx for reverse-proxy, you can add this statement in conf file.
